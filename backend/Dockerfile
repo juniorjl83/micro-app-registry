@@ -1,5 +1,5 @@
 # Use a Gradle image for the build stage
-FROM gradle:7-jdk21-alpine AS builder
+FROM gradle:7-jdk21 AS builder
 WORKDIR /app
 
 # Copy only the build files first to leverage layer caching
@@ -10,7 +10,7 @@ COPY src ./src
 RUN gradle bootJar --no-daemon
 
 # Runtime image with just the JRE
-FROM eclipse-temurin:21-jre-alpine
+FROM eclipse-temurin:21-jre
 WORKDIR /app
 COPY --from=builder /app/build/libs/*.jar app.jar
 EXPOSE 8080

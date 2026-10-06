@@ -2,12 +2,11 @@
 FROM node:20-alpine AS builder
 WORKDIR /app
 
-# Copy only the lock file first so Docker caches npm install
-COPY package-lock.json .
-COPY package.json .
+# Copy all source files
+COPY . .
 
-# Install dependencies using the lockfile (ensures reproducible builds)
-RUN npm ci --omit=dev
+# Install dependencies (no lockfile present)
+RUN npm install --omit=dev
 
 # Copy the rest of the source code
 COPY . .
@@ -20,4 +19,4 @@ FROM node:20-alpine
 WORKDIR /app
 COPY --from=builder /app/.output .
 EXPOSE 3000
-CMD ["node",".output/server/index.mjs"]
+CMD ["node","server/index.mjs"]

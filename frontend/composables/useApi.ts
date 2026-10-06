@@ -1,7 +1,7 @@
-import { defineNuxtPlugin, useRuntimeConfig } from '#app'
+import { useRuntimeConfig } from '#app'
 import axios from 'axios'
 
-export default defineNuxtPlugin(() => {
+export const useApi = () => {
   const config = useRuntimeConfig()
   const baseUrl = config.public.apiBase
 
@@ -15,12 +15,5 @@ export default defineNuxtPlugin(() => {
     return res.data
   }
 
-  return {
-    provide: {
-      api: {
-        get,
-        post
-      }
-    }
-  }
-})
+  return { get, post }
+}
