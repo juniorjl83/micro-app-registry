@@ -1,0 +1,21 @@
+# Project structure
+
+```
+micro-app-registry/
+├─ backend/            # Kotlin + Spring Boot code
+│   ├─ src/main/kotlin/com/example/identity/AuthController.kt   # TBD
+│   └─ …
+├─ frontend/          # Nuxt 4 + Vue 3 + TypeScript code
+│   ├─ pages/
+│   │   ├─ index.vue
+│   │   └─ catalog.vue
+│   └─ components/
+│       ├─ LoginForm.vue
+│       └─ CheckoutButton.vue
+├─ docs/              # Architecture diagrams, OpenAPI spec, plan
+│   ├─ architecture.c4.svg
+│   └─ plan.md
+└─ README.md
+```
+
+The repository is empty aside from this scaffold and the plan file that will be added next.
