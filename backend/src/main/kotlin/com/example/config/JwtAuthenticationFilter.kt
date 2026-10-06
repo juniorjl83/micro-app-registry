@@ -25,11 +25,11 @@ class JwtAuthenticationFilter(
     private val userRepository: UserRepository
 ) : OncePerRequestFilter() {
 
-    override protected def doFilterInternal(
+    override protected fun doFilterInternal(
         request: HttpServletRequest,
         response: HttpServletResponse,
         filterChain: FilterChain
-    ) throws ServletException, IOException {
+    ) {
         val header = request.getHeader("Authorization")
         if (header != null && header.startsWith("Bearer ")) {
             val token = header.substring(7)
@@ -54,7 +54,7 @@ class JwtAuthenticationFilter(
                     return
                 }
                 val user = userRepository.findById(userId) ?:
-                    throw IllegalArgumentException("User not found for id: $userId")
+                        throw IllegalArgumentException("User not found for id: $userId")
 
                 val authentication = UsernamePasswordAuthenticationToken(
                     user, null, Collections.emptyList() // authorities can be added later

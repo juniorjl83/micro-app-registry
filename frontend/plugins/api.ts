@@ -44,3 +44,5 @@ export const useApi = () => {
 
   return { get, post, setToken, clearToken }
 }
+
+export default useApi

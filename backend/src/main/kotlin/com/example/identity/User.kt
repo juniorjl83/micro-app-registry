@@ -25,4 +25,7 @@ data class User(
 
     @UpdateTimestamp
     val updatedAt: Instant = Instant.now()
-)
+) {
+    // JPA requires a no-arg constructor
+    protected constructor() : this(0, "", "", "")
+}

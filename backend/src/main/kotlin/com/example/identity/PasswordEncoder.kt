@@ -5,10 +5,7 @@ import org.springframework.security.crypto.password.PasswordEncoder
 import org.springframework.stereotype.Component
 
 @Component
-class PasswordEncoder : PasswordEncoder {
-    private val delegate = BCryptPasswordEncoder()
-
-    override fun encode(rawPassword: String): String = delegate.encode(rawPassword)
-    override fun matches(rawPassword: String, encodedPassword: String): Boolean =
-        delegate.matches(rawPassword, encodedPassword)
+class PasswordEncoder(private val delegate: BCryptPasswordEncoder = BCryptPasswordEncoder()) : PasswordEncoder {
+    override fun encode(rawPassword: CharSequence): String = delegate.encode(rawPassword)
+    override fun matches(rawPassword: CharSequence, encodedPassword: String): Boolean = delegate.matches(rawPassword, encodedPassword)
 }

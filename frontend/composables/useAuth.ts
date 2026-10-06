@@ -1,4 +1,4 @@
-import { useApi } from '@/plugins/api'
+import useApi from '@/plugins/api'
 import { useCookie } from '#app'
 
 export const useAuth = () => {

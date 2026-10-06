@@ -5,6 +5,9 @@ export default defineNuxtConfig({
     '@pinia/nuxt',
     '@vueuse/nuxt',
   ],
+  plugins: [
+    '@/plugins/api.ts',
+  ],
   runtimeConfig: {
     public: {
       apiBase: process.env.API_BASE || 'http://localhost:8080/api/v1',
